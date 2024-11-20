@@ -161,4 +161,5 @@ def pneumoniapredictPage():
     return render_template('pneumonia_predict.html', pred=pred)
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    # Ensure the app is accessible on all network interfaces and listens on port 80
+    app.run(host="0.0.0.0", port=80, debug=True)
