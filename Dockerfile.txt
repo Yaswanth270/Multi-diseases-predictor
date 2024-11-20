@@ -1,0 +1,25 @@
+# Use a base image with Python
+FROM python:3.9-slim
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy project files into the container
+COPY . /app
+
+# Install system dependencies (if required)
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libssl-dev \
+    libffi-dev \
+    python3-dev \
+    && apt-get clean
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose the application port (update to the correct port, e.g., 5000)
+EXPOSE 5000
+
+# Specify the command to run your application
+CMD ["python", "app.py"]
